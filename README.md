@@ -11,3 +11,10 @@
 Whether you’re hunting bugs or mapping entire attack surfaces, KeysGuard is the engine behind next-gen recon.
 
 > Built by red teamers, for red teamers. Powered by AI. Rebuilt and REINNOVATED by Keys.
+
+
+I will develop this project more as time goes on sorry for the poor upload quality and structure in advance. 
+
+Will have chatgpt generate setup instructions for me once the script is fully compiled and working. 
+
+- Keys
