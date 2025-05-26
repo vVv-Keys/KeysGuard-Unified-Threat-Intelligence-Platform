@@ -1,4 +1,7 @@
-#!/usr/bin/env python3
+# Save the full updated KeysGuard Recon Engine script (v0.3) with PDF, JSON, and API output
+updated_script_path = "/mnt/data/keysguard_recon_v0.3.py"
+
+full_script = '''#!/usr/bin/env python3
 
 import requests
 import sys
@@ -8,16 +11,17 @@ import time
 from fpdf import FPDF
 
 # === CONFIG ===
-USER_AGENT = "KeysGuardReconEngine/0.2"
+USER_AGENT = "KeysGuardReconEngine/0.3"
 TIMEOUT = 10
 API_ENABLED = True
-API_ENDPOINT = "https://your-api-endpoint.com/submit"
+API_ENDPOINT = "http://localhost:5000/api/report"
 AUTH_HEADERS = {
     "Authorization": "Bearer example-token"
 }
 COMMON_PATHS = ["admin", "login", "dashboard", "api", "config", ".env"]
 SUBDOMAIN_WORDLIST = ["test", "dev", "api", "www", "admin"]
 OUTPUT_DIR = "reports"
+LOGO_PATH = "keysguardlogo.png"  # Optional: put in same folder
 
 SECURITY_HEADERS = [
     "Content-Security-Policy",
@@ -28,16 +32,54 @@ SECURITY_HEADERS = [
 ]
 
 BANNER = r"""
-  _  __                _____                      _             
- | |/ /   ___   _ __  |  ___|__  _ __ _ __   ___ | |_ ___  _ __ 
- | ' /   / _ \ | '__| | |_ / _ \| '__| '_ \ / _ \| __/ _ \| '__|
- | . \  | (_) || |    |  _| (_) | |  | | | | (_) | || (_) | |   
- |_|\_\  \___/ |_|    |_|  \___/|_|  |_| |_|\___/ \__\___/|_|   
-                                                                
-   🔐 KeysGuard Recon Engine v0.2 — Full Recon w/ API + Reports
+K E Y S G U A R D   R E C O N   E N G I N E   
+  *     *   *   *     * *       *   * *   *   
+*             *     *     * *     *     *     
+    * *   *                                   
+            *                                 
+*     *                                       
+                        *                     
+          *     *                             
+  *                   *     *   * *     * *   
+                          *                   
+        *                           *         
+    *                                         
+              *     *                 *       
 """
 
-# === FUNCTIONS ===
+class ReconReportPDF(FPDF):
+    def header(self):
+        if os.path.exists(LOGO_PATH):
+            self.image(LOGO_PATH, 10, 8, 33)
+        self.set_font('Arial', 'B', 14)
+        self.cell(0, 10, 'KEYSGUARD RECON ENGINE REPORT', border=False, ln=True, align='C')
+        self.ln(10)
+
+    def section_title(self, title):
+        self.set_font('Arial', 'B', 12)
+        self.set_text_color(0)
+        self.cell(0, 10, title, ln=True)
+
+    def section_body(self, body):
+        self.set_font('Arial', '', 11)
+        self.set_text_color(50)
+        if isinstance(body, dict):
+            for k, v in body.items():
+                self.cell(0, 10, f"{k}: {v}", ln=True)
+        elif isinstance(body, list):
+            for item in body:
+                if isinstance(item, tuple):
+                    self.cell(0, 10, f"{item[0]} [{item[1]}]", ln=True)
+                elif isinstance(item, dict):
+                    self.set_font('Arial', 'B', 11)
+                    self.cell(0, 10, f"{item['name']} [{item['risk']}]", ln=True)
+                    self.set_font('Arial', '', 10)
+                    self.multi_cell(0, 8, f"Desc: {item['description']}")
+                    self.multi_cell(0, 8, f"Fix: {item['recommendation']}")
+                    self.ln(2)
+        else:
+            self.multi_cell(0, 10, str(body))
+        self.ln(5)
 
 def extract_title(html):
     try:
@@ -98,26 +140,11 @@ def generate_json_report(data, filename):
         json.dump(data, f, indent=2)
 
 def generate_pdf_report(data, filename):
-    pdf = FPDF()
+    pdf = ReconReportPDF()
     pdf.add_page()
-    pdf.set_font("Arial", size=12)
-    pdf.cell(200, 10, "KeysGuard Recon Report", ln=True, align="C")
-    pdf.ln(10)
-
     for section, content in data.items():
-        pdf.set_font("Arial", "B", 12)
-        pdf.cell(200, 10, section, ln=True)
-        pdf.set_font("Arial", size=11)
-        if isinstance(content, dict):
-            for k, v in content.items():
-                pdf.multi_cell(0, 10, f"{k}: {v}")
-        elif isinstance(content, list):
-            for item in content:
-                pdf.multi_cell(0, 10, f"{item}")
-        else:
-            pdf.multi_cell(0, 10, str(content))
-        pdf.ln(5)
-
+        pdf.section_title(section)
+        pdf.section_body(content)
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     pdf.output(os.path.join(OUTPUT_DIR, filename))
 
@@ -131,7 +158,7 @@ def push_to_api(scan_result):
         print(f"[API] Failed to send data: {e}")
 
 def scan_target(url):
-    print(f"\n[🔍] Scanning Target: {url}")
+    print(f"\\n[🔍] Scanning Target: {url}")
     result = {
         "Target": url,
         "Time": time.ctime()
@@ -153,7 +180,7 @@ def scan_target(url):
     found_paths = fuzz_common_paths(url)
     result["Fuzzed Paths"] = found_paths
     if found_paths:
-        print("\n[+] Fuzzed Endpoints:")
+        print("\\n[+] Fuzzed Endpoints:")
         for u, s in found_paths:
             print(f"  [+] {u} [{s}]")
 
@@ -161,7 +188,7 @@ def scan_target(url):
     subdomains = enum_subdomains(base_domain)
     result["Subdomains Found"] = subdomains
     if subdomains:
-        print("\n[+] Found Subdomains:")
+        print("\\n[+] Found Subdomains:")
         for s, c in subdomains:
             print(f"  [+] {s} [{c}]")
 
@@ -173,12 +200,10 @@ def scan_target(url):
     # === API PUSH ===
     push_to_api(result)
 
-# === MAIN ===
-
 def main():
     print(BANNER)
     if len(sys.argv) != 2:
-        print("Usage: python keysguard_recon_extended.py <target_url>")
+        print("Usage: python keysguard_recon_v0.3.py <target_url>")
         sys.exit(1)
 
     target_url = sys.argv[1]
@@ -189,3 +214,9 @@ def main():
 
 if __name__ == "__main__":
     main()
+'''
+
+with open(updated_script_path, "w") as f:
+    f.write(full_script)
+
+updated_script_path
