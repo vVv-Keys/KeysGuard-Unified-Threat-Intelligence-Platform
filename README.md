@@ -1,20 +1,115 @@
-# KeysGuard Recon Engine
+# 🛡️ KeysGuard: Unified Cybersecurity & Threat Intelligence Suite
 
-**KeysGuard Recon Engine** is a modular, AI-assisted offensive security toolkit designed for full-scope reconnaissance, vulnerability detection, and API exploitation analysis. Rebuilt from the Reaper framework and hardened for red team workflows, KeysGuard empowers security researchers with:
+Welcome to **KeysGuard**, an open-source, modular cybersecurity framework designed to detect, analyze, and report threats across modern digital environments. From real-time memory scanning to AI-assisted recon and threat monitoring, KeysGuard provides a scalable platform for ethical hackers, red teamers, and defenders.
 
-- 🔍 Advanced scanning profiles (Web App, API, WAF Evasion, Logic Flaws)
-- 🧠 AI agent integration with intelligent fuzzing and reporting
-- ⚙️ Plug-and-play compatibility with `httpx`, `nuclei`, `amass`, and more
-- 📤 Professional CVSS vulnerability reports with PoCs and remediation
-- 🔔 Optional webhook alerting to Discord or SIEM
+> 💡 **Built with Rust, Python, React, and a vision to protect.**
 
-Whether you’re hunting bugs or mapping entire attack surfaces, KeysGuard is the engine behind next-gen recon.
+---
 
-> Built by red teamers, for red teamers. Powered by AI. Rebuilt and REINNOVATED by Keys.
+## 🔍 Key Components
 
+### 🧠 KeysGuard Scanner (Rust + YARA + HWID)
+- Advanced memory and process scanner built in Rust
+- PE/MZ header detection, YARA integration, and HWID fingerprinting
+- FiveM cheat detection compatibility (anti-cheat)
+- Real-time scan reporting with Discord Webhook & Remote Sync
 
-I will develop this project more as time goes on sorry for the poor upload quality and structure in advance. 
+### 🌐 KeysGuard Recon Engine (Python)
+- Web app reconnaissance, OSINT, metadata extraction
+- SQLi payload testing, subdomain enumeration, port scanning
+- Supports automation via local or remote API
+- Generates clean, professional PDF reports
 
-Will have chatgpt generate setup instructions for me once the script is fully compiled and working.. am trying to make more than just another "VULNERABILITY SCANNER" that integrates zap and a bunch of other shit so bear with me people
+### 🧬 ThreatNet (AI-Driven)
+- Visualizes live network threats and detections
+- AI-supported classification and alert triage
+- Future support for GPT-assisted threat correlation
+- Modular backend and React-based real-time dashboard
 
-- Keys
+### ⚙️ KeysGuard Dashboard (React + TailwindCSS)
+- Modular, animated frontend UI to view scan results, logs, and metrics
+- API-driven updates from scanner and recon engine
+- Interactive threat intelligence panels
+- Built for expansion into real-time defensive operation center (DOC)
+
+---
+
+## 📦 Project Structure
+
+```bash
+keysguard/
+│
+├── scanner/               # Rust memory/process scanner
+├── recon-api/             # Flask backend for recon engine
+├── frontend-dashboard/    # Vite + React UI dashboard
+├── threatnet/             # Threat visualization & AI core
+├── scripts/               # Automation & testing helpers
+└── docs/                  # Documentation & guides
+🚀 Getting Started
+Prerequisites
+Python 3.11+
+
+Rust & Cargo (for scanner)
+
+Node.js + Vite (for frontend)
+
+Docker (optional deployment)
+
+Clone & Run
+bash
+Copy
+Edit
+git clone https://github.com/YOUR_USERNAME/keysguard.git
+cd keysguard
+
+# Run recon API
+cd recon-api
+pip install -r requirements.txt
+python scan.py
+
+# Start frontend
+cd ../frontend-dashboard
+npm install
+npm run dev
+
+# Compile Rust scanner
+cd ../scanner
+cargo build --release
+🛠️ Current Features
+ Rust memory scanner with PE/YARA detection
+
+ Discord Webhook integration
+
+ Flask API for recon scanning
+
+ SQLi testing + metadata scraper
+
+ React + Tailwind dashboard
+
+ HWID + process fingerprinting
+
+ Free, serverless deployment support (Vercel)
+
+🧠 AI & ThreatNet Vision
+We're integrating AI-assisted features like:
+
+GPT-powered scan summary
+
+Threat classification
+
+MITRE mapping for attack patterns
+
+Realtime collaboration-ready threat board
+
+🤝 Contributing
+We welcome contributions!
+
+Fork the repo
+
+Make your changes in a feature branch
+
+Submit a pull request with a description
+
+📜 License
+MIT License © 2025 @vVv-Keys
+
