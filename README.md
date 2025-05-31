@@ -11,7 +11,6 @@ Welcome to **KeysGuard**, an open-source, modular cybersecurity framework design
 ### 🧠 KeysGuard Scanner (Rust + YARA + HWID)
 - Advanced memory and process scanner built in Rust
 - PE/MZ header detection, YARA integration, and HWID fingerprinting
-- FiveM cheat detection compatibility (anti-cheat)
 - Real-time scan reporting with Discord Webhook & Remote Sync
 
 ### 🌐 KeysGuard Recon Engine (Python)
