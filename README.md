@@ -15,6 +15,6 @@ Whether you’re hunting bugs or mapping entire attack surfaces, KeysGuard is th
 
 I will develop this project more as time goes on sorry for the poor upload quality and structure in advance. 
 
-Will have chatgpt generate setup instructions for me once the script is fully compiled and working. 
+Will have chatgpt generate setup instructions for me once the script is fully compiled and working.. am trying to make more than just another "VULNERABILITY SCANNER" that integrates zap and a bunch of other shit so bear with me people
 
 - Keys
