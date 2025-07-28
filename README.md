@@ -1,105 +1,84 @@
-<p align="center">
-  <img src="bannerkeysguard.png" alt="KEYSGUARD Logo" width="800"/>
-</p>
+## KeysGuard: Enterprise Threat Intelligence Reactor
 
-# 🛡️ KeysGuard: Unified Cybersecurity & Threat Intelligence Suite
+### 🔐 Mission Statement
 
-**Defend · Detect · Dominate**
+KeysGuard is the flagship AI-augmented threat intelligence platform engineered for high-scale enterprise defense, global observability, and advanced correlation at machine speed. Built for fusion centers, red teams, MSSPs, and government ops, KeysGuard fuses 2500+ real-time intelligence feeds with advanced ML inference, visual analytics, quantum threat modeling, and zero-latency automation.
 
 ---
 
-Welcome to **KeysGuard**, a modular, open-source cybersecurity framework built for **ethical hackers**, **red team operators**, and **defenders**. From real-time memory scans to AI-powered recon and forensic reporting, KeysGuard brings together modern tools to secure modern systems.
+## 🌐 System Capabilities
 
-> 💡 **Built with Rust, Python, React, and a vision to protect.**
+### 1. Global Threat Intelligence Mesh
 
----
+* 2500+ curated live feeds from:
 
-## 🔍 Key Components
+  * CISA KEV, MITRE ATT\&CK, MISP, URLHaus, Feodo Tracker, ThreatFox
+  * STIX/TAXII, RSS pipelines, dark web monitoring, and nation-state intel hubs
+* IOC deduplication, trust scoring, and adaptive reputation tracking
+* Automatic enrichment via CVE, VT, WHOIS, AbuseIPDB, and internal observables
 
-### 🧠 KeysGuard Scanner *(Rust + YARA + HWID)*
-- Built in Rust for high-performance memory/process scanning
-- PE/MZ header detection, registry & file scan
-- HWID + system fingerprinting
-- YARA rule integration for pattern matching
-- Discord Webhook alerts and secure remote sync
+### 2. Autonomous Threat Lifecycle Engine
 
----
+* AI-triggered threat correlation across multi-source events
+* Dynamic alert severity mapping (CVSS, EPSS, behavior modeling)
+* Adaptive alert routing (SOC, IR, dev, CISO tiers)
+* Threat lifecycle tags: `Discovered` → `Verified` → `Clustered` → `Simulated` → `Resolved`
 
-### 🌐 KeysGuard Recon Engine *(Python)*
-- Web app vulnerability scanner + OSINT toolkit
-- SQLi, XSS payload fuzzing, subdomain/port recon
-- Metadata extraction, endpoint enumeration
-- Generates clean, professional PDF/JSON reports
-- Lightweight API for local or remote use
+### 3. Quantum-Resistant Analytics Suite
 
----
+* Embedded Quantum Core engine
+* PQC Readiness Matrix (NIST Curve migration map)
+* AI Quantum Impact Analyzer
+* Quantum-Targeted IOC Filtering
 
-### 🧬 KeysGuard ThreatNet *(AI-Driven Intelligence Layer)*
-- Visualizes active threats, detections, and trends
-- AI-supported detection triage and alert correlation
-- GPT-powered threat modeling *(coming soon)*
-- Integrates seamlessly into the KeysGuard Dashboard
+### 4. Modular ThreatOps Workbench
 
----
+* Visual Playbook Builder (drag-and-drop + AI DSL translation)
+* Case + Campaign Management linked to live MITRE heatmap
+* Live Timeline Chain: End-to-end attack flow with actor/TTP trace
+* Detection Tuner: View rule coverage per threat pattern (Sigma, YARA, Elastic, KQL)
 
-### 🖥️ KeysGuard Dashboard *(React + Tailwind CSS)*
-- Beautiful, animated UI for detection review
-- Real-time data from scanner + recon engine
-- Interactive panels, logs, evidence upload
-- Ban/flag/report controls + session history view
-- PIN + JWT authentication for admin security
+### 5. Threat Intelligence Distribution Fabric
 
----
+* Auto-formatted Discord, Slack, Teams, Email, Webhook delivery
+* Analyst report bundling (ZIP, PDF, STIX2)
+* OpenCTI and ThreatBus integrations
+* Full audit trail + RLS policy enforcement per role/team
 
-## 🧩 Modular Design
+### 6. Frontend Architectures
 
-KeysGuard is designed to be fully modular. Use the components independently or together depending on your needs:
-- ✅ Use **Scanner** standalone on a game client or endpoint
-- ✅ Deploy **Recon Engine** to run automated site assessments
-- ✅ Visualize everything in the **Dashboard**
-- ✅ Integrate **ThreatNet** AI for deeper triage
+* Primary: React 18 + Supabase/PostgreSQL + WebSocket relay
+* Optional: Lightweight KeysGuardQ front-end proxy (HTML+JS)
+* Realtime Dashboard Cards: Threat stats, adversary chains, system health, active observables
 
 ---
 
-## 👥 Who’s It For?
+## 🧩 Difference: KeysGuard vs KeysGuardQ
 
-- 🛡️ Cybersecurity professionals
-- 🔍 Red teamers and pentesters
-- 🧪 Threat hunters and defenders
-- 🎮 Game server admins (FiveM, Rust, etc.)
-- 💻 Anyone who needs scalable, real-time security tools
-
----
-
-## 🌍 Deployment Status
-
-| Component         | Status     | Link |
-|------------------|------------|------|
-| Dashboard (React) | ✅ Live     | Ask for Demo|
-| Backend API       | ✅ Live     | Ask for Demo |
-| Scanner (Rust)    | 🧪 Testing  | Local/Client Binary |
-| Recon Engine      | 🧪 CLI/API  | Python CLI/API |
-| ThreatNet (AI)    | 🔄 In Dev   | Future GPT-powered logic |
+| Feature             | KeysGuardQ (Lite)      | KeysGuard (Full)             |
+| ------------------- | ---------------------- | ---------------------------- |
+| IOC Feeds           | \~20 curated feeds     | 2500+ live + dark web        |
+| AI Correlation      | Basic campaign scoring | Full-spectrum AI correlation |
+| Platform Type       | HTML/Embed-Friendly    | Full-stack + dashboard       |
+| Quantum Readiness   | Simulated gauge        | PQC audit + live impact AI   |
+| Integration Options | Discord/webhook only   | Email, Slack, OpenCTI, etc.  |
+| Deployment          | Vercel/pages/no-code   | Docker + CI/CD + Postgres    |
+| Target User         | Solo analyst/teams     | Fusion center/SOC/enterprise |
 
 ---
 
-## 🤝 Collaborate / Reach Out
+## 🚀 Launch Readiness Checklist
 
-If you’re interested in:
-- Running KeysGuard on your server
-- Contributing code, features, or scans
-- Collaborating on new modules
-- Sponsoring or using this in a SOC or gaming environment
-
-📩 Reach out directly:
-
-**KEYS**  
-📧 `KeysGuard@usa.com`  
-🔗 [GitHub](https://github.com/vVv-Keys)  
-🌐 [Live Dashboard](https://keyscanner.vercel.app)
+* [x] GitHub Repos: `keysguard-platform`, `keysguard-core`, `keysguard-feeds`
+* [x] Backend: Supabase schema, WebSocket bridge, FastAPI AI layer
+* [x] Frontend: React dashboard, KeysGuardQ landing site, glass panel system
+* [x] Feeds: Over 2500+ connected and normalized
+* [x] Branding: Logo, embeds, README, mission, license, PDF deck
 
 ---
 
-> 🧠 “We don’t just detect. We dissect, document, and defend.”  
-> *Join the movement. Secure everything.*
+## 🔐 Final Notes
 
+KeysGuard is the high-fidelity threat reactor powering your most mission-critical defenses. Designed for adversarial environments, scalable trust networks, and compliance-grade intelligence fusion, it stands as the flagship engine behind the KeysGuardQ light variant.
+
+**— The KeysGuard Core DevOps Team**
